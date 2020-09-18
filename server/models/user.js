@@ -12,10 +12,10 @@ const schema = mongoose.Schema({
         username: String
     },
     email: {
-        inputType: String
+        email: String
     },
     password: {
-        inputType: String
+        password: String
     }
 })
 
