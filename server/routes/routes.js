@@ -1,23 +1,16 @@
 const express = require("express");
-const User = require("../models/user")
 const router = express.Router();
+const User = require("../models/user")
+const registerController = require('../controllers/register');
+const loginController = require('../controllers/login');
 
-router.get('/user', async (req, res) => {
-    const users = await User.find();
+router.get('/userlist:fname', async (req, res) => {
+    const users = await User.findOne({fname: req.fname});
+    console.log(users);
     res.send(users);
 })
 
-router.post('/user', async (req, res) => {
+router.post('/login', loginController.login);
+router.post('/register', registerController.register);
 
-    const user = new User({
-        fname: req.body.fname,
-        lname: req.body.lname,
-        uname: req.body.uname,
-        email: req.body.email,
-        password: req.body.password
-    })
-
-    await user.save();
-    res.send(user);
-})
 module.exports = router;
