@@ -1,5 +1,6 @@
 const User = require("../models/user");
 
+
 exports.register = async (req, res) => {
     let newUser = new User({
         fname: req.body.fname,
@@ -8,7 +9,8 @@ exports.register = async (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
+
     await newUser.save()
-    console.log(newUser.fname);
+    console.log(newUser);
     res.send("User created!")
 }
