@@ -9,7 +9,7 @@ const schema = mongoose.Schema({
     email: String,
     password: String,
     log: {
-        exercise: [{
+        exercises: [{
             type: String,
             reps: Number,
             completed: Boolean
