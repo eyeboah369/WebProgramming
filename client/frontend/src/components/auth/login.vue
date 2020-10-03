@@ -1,8 +1,18 @@
 <template>
-<div style="margin: -3vh; margin-left: -3vw">
-<div class="container is-fullhd" style="margin-bottom: 5vh; background-color: lightgreen">
-       <label class="label is-medium">Exercise App</label>
-</div>
+<div>
+<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: lightgreen; margin-bottom: 5vh">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/login">
+      <h1><strong>Exercise App</strong></h1>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
 <div class="container">
 <form @submit.prevent="loginUser" class="columns">
     <div class="column">
@@ -68,7 +78,8 @@ export default {
         let res = await this.$http.post("/login", this.login);
         let status = res.status
         if(status == 200){
-          let token = res.token;
+          let token = res.data.token;
+          //console.log(res.data.token);
           this.$swal.fire("Success", "Login Was successful", "success");
           localStorage.setItem("jwt", token);
           this.$router.push("/home");

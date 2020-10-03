@@ -1,8 +1,8 @@
 <template>
-<div style="margin: -3vh; margin-left: -3vw">
-<div class="container is-fullhd" style="margin-bottom: 5vh; background-color: lightgreen">
+<div>
+<nav class="container is-fullhd" style="height: 7vh; margin-bottom: 5vh; background-color: lightgreen">
        <label class="label is-medium">Exercise App</label>
-</div>
+</nav>
 <div class="container">
 <form @submit.prevent="registerUser" class="columns">
     <div class="column">
@@ -112,6 +112,7 @@ export default {
             if(status == 200){
                 //localStorage.setItem("jwt", token);
                 this.$swal.fire("Success", "Registration Was successful", "success");
+                this.$router.push("/login");
             }
             else{
                 this.$swal.fire("Error", "Something Went Wrong", "error");

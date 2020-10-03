@@ -17,27 +17,35 @@ const User = require("../models/user");
         try{
             User.findOne({email: req.body.email}, function (error,info){
                 if(!info){
-                    res.status(200).json({
-                        status: "error1",
+                    res.status(401).json({
+                        status: "error",
                         message: "Email or password incorrect",
                         data: null
                     });
                 }
                 else {
                     if(bcrypt.compareSync(req.body.password, info.password)) {
-                        const token = jwt.sign({id:info._id}, "" + process.env.JWT_KEY, {expiresIn: '1h'});
+                        const token = jwt.sign({
+                            id:info._id, 
+                            fname: info.fname,
+                            lname: info.lname,
+                            uname: info.uname,
+                            email: info.email,
+
+                            }, 
+                            "" + process.env.JWT_KEY, {expiresIn: '1h'});
                         res.status(200).json({
                             status: "success",
                             message: "User authenticated",
                             data: {
                                 user: info,
-                                token: token
-                            }
+                            },
+                            token: token
                         });
                     }
                     else{
-                        res.json({
-                            status: "error2",
+                        res.status(401).json({
+                            status: "error",
                             message: "Email or password incorrect",
                             data: null
                         });
