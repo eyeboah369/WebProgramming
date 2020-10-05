@@ -115,7 +115,7 @@ export default {
                 this.$router.push("/login");
             }
             else{
-                this.$swal.fire("Error", "Something Went Wrong", "error");
+                this.$swal.fire("Error", "Something went wrong, try again", "error");
             }
         }
         catch(err){

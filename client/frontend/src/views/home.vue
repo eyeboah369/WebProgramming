@@ -27,9 +27,17 @@
     </div>
 </nav>
       <div class="container mt-5">
-        <h1>hey there {{user.fname}}!</h1>
+        <h1>Hey there {{user.fname}}!</h1>
       </div>
+<div class="columns">
+  <div class="column">
+    First column
+  </div>
+  <div class="column">
+    Second column
+  </div>
 
+  </div>
 
   <footer class="footer">
   <div class="content has-text-centered">
@@ -65,7 +73,7 @@ export default {
     logout() {
       localStorage.removeItem("jwt");
       console.log("logging out...");
-      this.$swal.fire("Success", "Loged out", "success");
+      this.$swal.fire("Success", "Logged out", "success");
       this.$router.push("/login");
     },
   },
