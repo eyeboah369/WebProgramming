@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <v-app>
 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: lightgreen; margin-bottom: 5vh">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/login">
+    <a class="navbar-item" href="/login" style="color: black">
       <h1><strong>Exercise App</strong></h1>
     </a>
 
@@ -26,41 +26,48 @@
       </div>
     </div>
 </nav>
-      <div class="container mt-5">
-        <h1>Hey there {{user.fname}}!</h1>
-      </div>
-<div class="columns">
-  <div class="column">
-    First column
-  </div>
-  <div class="column">
-    Second column
-  </div>
+      <v-container fluid class="white lighten-5" >
+        <v-row
+      class="d-flex align-center justify-center pa-4 mx-auto"
+      max-width="550"
+      min-height="76"
+      outlined
+    >
 
-  </div>
+       <h1 class="greeting">Welcome {{user.fname}}!</h1>
+      
+    </v-row>
+        <log />
+    </v-container>
+
 
   <footer class="footer">
-  <div class="content has-text-centered">
+
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
   <div class="navbar-end">
     <button v-on:click="logout" class="button is-danger is-rounded">Logout</button>
     </div>
 </nav>
-  </div>
+
 </footer>
-</div>
+</v-app>
 </template>
 
 
 <script>
 import jwt_decode from "jwt-decode";
+import log from "./log";
 export default {
   data() {
     return {
       user: {}
     };
   },
+  components: {
+    log
+  },
+
   methods: {
     getUserDetails() {
       let token = localStorage.getItem("jwt");
@@ -94,5 +101,15 @@ export default {
   color: white;
   background-color: white;
   text-align: center;
+}
+
+.greeting {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.footer{
+  padding-top: 4px !important;
+  padding-bottom: 3rem;
 }
 </style>
