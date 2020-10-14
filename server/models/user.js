@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
-const salt = 10;
+require("dotenv").config();
 
 const schema = mongoose.Schema({
     fname: String,
@@ -8,19 +8,16 @@ const schema = mongoose.Schema({
     uname: String,
     email: String,
     password: String,
-    log: {
-        exercises: [{
-            type: String,
+    exercises: [{
+            exercise_name: String,
             reps: Number,
-            completed: Boolean
+            days: []
         }]
 
-
-    }
 });
 
 schema.pre('save', function(next){
-    this.password = bcrypt.hashSync(this.password, salt);
+    this.password = bcrypt.hashSync(this.password, 10);
     next();
 });
 module.exports = mongoose.model("user", schema)

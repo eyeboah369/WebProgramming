@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require("../models/user");
-   
+
    //query all the users from the db to view 
   exports.getAllUsers = async (req, res) => {
        const users = await User.find();
@@ -26,12 +26,12 @@ const User = require("../models/user");
                 else {
                     if(bcrypt.compareSync(req.body.password, info.password)) {
                         const token = jwt.sign({
-                            id:info._id, 
+                            _id:info._id, 
                             fname: info.fname,
                             lname: info.lname,
                             uname: info.uname,
                             email: info.email,
-
+                            log: info.log
                             }, 
                             "" + process.env.JWT_KEY, {expiresIn: '1h'});
                         res.status(200).json({
