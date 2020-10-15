@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import login from "../views/login";
 import register from "../views/register";
 import home from "../views/home";
+import admin from "../views/admin"
 
 Vue.use(VueRouter);
 const routes = [
@@ -29,6 +30,14 @@ const routes = [
           auth: true
         }
       },
+      {
+        path: "/admin",
+        name: "admin",
+        component: admin,
+        meta: {
+          auth: true
+        }
+      }
 ];
 
 const router = new VueRouter({

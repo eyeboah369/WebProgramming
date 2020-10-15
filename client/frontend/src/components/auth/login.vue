@@ -16,7 +16,7 @@
 <div class="container">
 <form @submit.prevent="loginUser" class="columns">
     <div class="column">
-        <h1>Welcome</h1>
+        <h1 class="welcome">Welcome</h1>
     </div>
     <div class="column">
         <div class="field">
@@ -53,9 +53,9 @@
             </button>
         </p>
         </div>
+            <h6 class="subtitle is-6" style="justify-content: center">Not signed up? Register <router-link to="/register">here</router-link></h6>
         </div>
     </form>
-    <h6 class="subtitle is-6">Not signed up? Register <router-link to="/register">here</router-link></h6>
 </div>
 
 </div>
@@ -77,12 +77,27 @@ export default {
       try {
         let res = await this.$http.post("/login", this.login);
         let status = res.status
+
         if(status == 200){
-          let token = res.data.token;
-          //console.log(res.data.token);
+            let token = res.data.token;
+              if(this.login.email == "admin1@gmail.com"){
+                console.log("reached admin check!!!!!!")
+                this.$swal.fire("Success", "Login Was successful", "success");
+              localStorage.setItem("jwt", token);
+              this.$router.push("/admin");
+              }
+          }
+          if(status == 200){
+            let token = res.data.token;
+              //console.log(res.data.token);
           this.$swal.fire("Success", "Login Was successful", "success");
           localStorage.setItem("jwt", token);
           this.$router.push("/home");
+
+            }
+
+        else{
+          console.log("bad vibes");
         }
       }
       catch(err){
@@ -95,3 +110,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.column{
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.welcome{
+  color: lightgreen;
+  font-size: 4em;
+  font-weight: bold;
+}
+</style>

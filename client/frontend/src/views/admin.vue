@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+<v-app>    
 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: lightgreen; margin-bottom: 5vh">
   <div class="navbar-brand">
     <a class="navbar-item" href="/login" style="color: black">
@@ -24,7 +24,8 @@
       </div>
     </div>
 </nav>
-      <v-container fluid class="white lighten-5" >
+
+<v-container fluid class="white lighten-5" >
         <v-row
       class="d-flex align-center justify-center pa-4 mx-auto"
       max-width="550"
@@ -32,15 +33,14 @@
       outlined
     >
 
-       <h1 class="greeting">Welcome {{user.fname}}!</h1>
+       <h1 class="greeting">Welcome Admin1!</h1>
       
     </v-row>
 
         <log />
     </v-container>
 
-
-  <footer class="footer">
+      <footer class="footer">
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
@@ -53,44 +53,19 @@
 </v-app>
 </template>
 
-
 <script>
-import jwt_decode from "jwt-decode";
-import log from "./log";
-import addLog from "./addlog"
 export default {
-  data() {
-    return {
-      dialog: false,
-      user: {},
-      log: {}
-    };
-  },
-  components: {
-    addLog,
-    log
-  },
+    
 
-  methods: {
-    getUserDetails() {
-      let token = localStorage.getItem("jwt");
-      console.log("token : " + token);
-      let decoded = jwt_decode(token);
-      console.log("Decoded: " + typeof decoded.fname);
-      this.user = decoded;
-      console.log("user information: " + this.user.fname);
-    },
-    logout() {
+    methods: {
+      logout() {
       localStorage.removeItem("jwt");
       console.log("logging out...");
       this.$swal.fire("Success", "Logged out", "success");
       this.$router.push("/login");
-    },
-  },
-  mounted() {
-      this.getUserDetails();
-  }
-};
+    }
+    }
+}
 </script>
 
 <style scoped>

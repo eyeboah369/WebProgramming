@@ -26,19 +26,31 @@
 
 
 <script>
+//import jwt_decode from "jwt-decode";
 export default {
+  
     data() {
         return{
-            count: 0
+            count: 0,
         }
     },
 
     methods: {
-        addLog(){
+        /*addLog(){
+          try{
             let token = localStorage.getItem("jwt");
-            return token;
-        }
-    }
+            let decoded = jwt_decode(token);
+            this.user_log = decoded.log;
+            console.log("This is the log: " + this.user_log.log);
+          }
+          catch(err){
+            console.log("Erorr message: " + err);
+          }
+        } 
+    },
+    mounted(){
+      this.addLog();
+    */}
 }
 
 
