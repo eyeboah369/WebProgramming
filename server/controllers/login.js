@@ -23,6 +23,7 @@ const User = require("../models/user");
                         data: null
                     });
                 }
+                
                 else {
                     if(bcrypt.compareSync(req.body.password, info.password)) {
                         const token = jwt.sign({
