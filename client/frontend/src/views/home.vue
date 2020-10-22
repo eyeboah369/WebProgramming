@@ -1,6 +1,6 @@
 <template>
   <v-app>
-<nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: lightgreen; margin-bottom: 5vh">
+<nav class="navbar" role="navigation" aria-label="main navigation" style="position: fixed; width: 100%; background-color: lightgreen; ">
   <div class="navbar-brand">
     <a class="navbar-item" href="/login" style="color: black">
       <h1><strong>Exercise App</strong></h1>
@@ -23,24 +23,7 @@
         </div>
       </div>
     </div>
-</nav>
-      <v-container fluid class="white lighten-5" >
-        <v-row
-      class="d-flex align-center justify-center pa-4 mx-auto"
-      max-width="550"
-      min-height="76"
-      outlined
-    >
-
-       <h1 class="greeting">Welcome {{user.fname}}!</h1>
-      
-    </v-row>
-
-        <log />
-    </v-container>
-
-
-  <footer class="footer">
+    <footer class="footer">
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
 
@@ -50,6 +33,34 @@
 </nav>
 
 </footer>
+</nav>
+      <v-container fluid class="white lighten-5" style="margin-top: 5vh">
+        
+        <v-row
+      class="d-flex align-center justify-center pa-4 mx-auto"
+      max-width="550"
+      min-height="76"
+      outlined
+    >
+      <v-col cols="12"
+        sm="6"
+        md="8">
+       <h1 class="greeting">Welcome {{user.fname}}!</h1>
+       <log />
+       
+       </v-col>
+
+      <v-col cols="6"
+        md="4" style="margin-top: 5vh">
+      <sidenav />
+      
+      </v-col>
+      
+    </v-row>
+
+    </v-container>
+
+
 </v-app>
 </template>
 
@@ -57,6 +68,7 @@
 <script>
 import jwt_decode from "jwt-decode";
 import log from "./log";
+import sidenav from './sidenav';
 import addLog from "./addlog"
 export default {
   data() {
@@ -68,7 +80,8 @@ export default {
   },
   components: {
     addLog,
-    log
+    log,
+    sidenav
   },
 
   methods: {
@@ -108,7 +121,7 @@ export default {
 
 .greeting {
   font-size: 1.5em;
-  font-weight: bold;
+  
 }
 
 .footer{
