@@ -83,11 +83,10 @@ export default {
               if(this.login.email == "admin1@gmail.com"){
                 console.log("reached admin check!!!!!!")
                 this.$swal.fire("Success", "Login Was successful", "success");
-              localStorage.setItem("jwt", token);
-              this.$router.push("/admin");
+                this.pushAdmin(token);
               }
           }
-          if(status == 200){
+          if(status == 200 && this.login.email != "admin1@gmail.com"){
             let token = res.data.token;
               //console.log(res.data.token);
           this.$swal.fire("Success", "Login Was successful", "success");
@@ -106,6 +105,10 @@ export default {
           this.$swal.fire("Error", "Incorrect email or password, try again", "error");
         }
       }
+    },
+    pushAdmin(token){
+      localStorage.setItem("jwt", token);
+      this.$router.push("/admin");
     }
   }
 };
