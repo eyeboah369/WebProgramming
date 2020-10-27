@@ -17,9 +17,6 @@
       <div class="navbar-item">
         <div class="buttons">
                   <addLog />
-         <!-- <a class="button is-light">
-            Log in
-          </a> -->
         </div>
       </div>
     </div>
@@ -46,8 +43,18 @@
         sm="6"
         md="8">
        <h1 class="greeting">Welcome {{user.fname}}!</h1>
-       <log />
-       
+       <v-col class="col"
+          style="margin-bottom: 8vh;"
+       > 
+          <v-card
+            class="pa-2" 
+            style="box-shadow: 0px 9.5px 15px -7px #888888;height: 55vh; margin-bottom: 15vh"
+            outlined
+            tile
+          >
+            Hey there
+          </v-card>
+        </v-col>
        </v-col>
 
       <v-col cols="6"
@@ -67,7 +74,7 @@
 
 <script>
 import jwt_decode from "jwt-decode";
-import log from "./log";
+//import log from "./log";
 import sidenav from './sidenav';
 import addLog from "./addlog"
 export default {
@@ -75,12 +82,12 @@ export default {
     return {
       dialog: false,
       user: {},
-      log: {}
+      //log: []
     };
   },
   components: {
     addLog,
-    log,
+    //log,
     sidenav
   },
 
@@ -92,6 +99,7 @@ export default {
       console.log("Decoded: " + typeof decoded.fname);
       this.user = decoded;
       console.log("user information: " + this.user.fname);
+
     },
     logout() {
       localStorage.removeItem("jwt");
