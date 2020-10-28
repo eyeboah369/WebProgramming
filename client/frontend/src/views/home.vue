@@ -2,7 +2,7 @@
   <v-app>
 <nav class="navbar" role="navigation" aria-label="main navigation" style="position: fixed; width: 100%; background-color: lightgreen; ">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/login" style="color: black">
+    <a class="navbar-item" href="/home" style="color: black">
       <h1><strong>Exercise App</strong></h1>
     </a>
 
@@ -48,11 +48,17 @@
        > 
           <v-card
             class="pa-2" 
-            style="box-shadow: 0px 9.5px 15px -7px #888888;height: 55vh; margin-bottom: 15vh"
+            style="box-shadow: 0px 9.5px 15px -7px #888888; height: 76vh; margin-bottom: 15vh"
             outlined
             tile
           >
-            Hey there
+            <h1><strong>{{user.fname}} {{user.lname}}</strong></h1><br />
+            <h2>Today's Exercises:</h2><br />
+
+            <div v-for="item in dailyLog" :key="item">
+               {{ item }}
+            </div>
+
           </v-card>
         </v-col>
        </v-col>
@@ -74,7 +80,6 @@
 
 <script>
 import jwt_decode from "jwt-decode";
-//import log from "./log";
 import sidenav from './sidenav';
 import addLog from "./addlog"
 export default {
@@ -82,7 +87,7 @@ export default {
     return {
       dialog: false,
       user: {},
-      //log: []
+      dailyLog: []
     };
   },
   components: {
@@ -99,7 +104,30 @@ export default {
       console.log("Decoded: " + typeof decoded.fname);
       this.user = decoded;
       console.log("user information: " + this.user.fname);
+      console.log("exercise information: " + this.user.exercises);
 
+
+    },
+    getDayLog(){
+      let d = new Date();
+      let weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+
+      let currDay = weekday[d.getDay()];
+
+      for(let i = 0; i < this.user.exercises.length; i++){
+        if(this.user.exercises[i].days.includes(currDay)){
+          this.dailyLog.push(this.user.exercises[i].exercise_name);
+        }
+      }
+      this.dailyLog = [...new Set(this.dailyLog)];
+      console.log(this.dailyLog);
     },
     logout() {
       localStorage.removeItem("jwt");
@@ -109,7 +137,8 @@ export default {
     },
   },
   mounted() {
-      this.getUserDetails();
+      this.getUserDetails(),
+      this.getDayLog();
   }
 };
 </script>
