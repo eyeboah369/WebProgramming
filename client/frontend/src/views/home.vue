@@ -40,28 +40,64 @@
       outlined
     >
       <v-col cols="12"
-        sm="6"
+        sm="8"
         md="8">
        <h1 class="greeting">Welcome {{user.fname}}!</h1>
-       <v-col class="col"
-          style="margin-bottom: 8vh;"
-       > 
+        <h2>Today's Exercises:</h2><br />
+        <div v-for="item in dailyLog" :key="item" style="display: inline-block; padding-right: 4vw;">
+       <v-row class="row"> 
           <v-card
             class="pa-2" 
-            style="box-shadow: 0px 9.5px 15px -7px #888888; height: 76vh; margin-bottom: 15vh"
+            style="box-shadow: 0px 9.5px 15px -7px #888888; height: 60vh; margin-bottom: 10vh; width: 50vw"
             outlined
             tile
           >
-            <h1><strong>{{user.fname}} {{user.lname}}</strong></h1><br />
-            <h2>Today's Exercises:</h2><br />
+               <h2 style="font-size: 21px; padding-bottom: 5vh"><strong>{{ item }}</strong></h2>
+            <v-row>
+              <v-col>
+               <v-checkbox 
+              v-model="ex4"
+              label="Completed"
+              color="success"
+              value="success"
+              hide-details
+            ></v-checkbox>
+            <v-checkbox
+              v-model="ex4"
+              label="In Progress"
+              color="orange"
+              value="orange"
+              hide-details
+            ></v-checkbox>
 
-            <div v-for="item in dailyLog" :key="item">
-               {{ item }}
-            </div>
+            <v-checkbox
+              v-model="ex4"
+              label="Not Done"
+              color="red"
+              value="red"
+              hide-details
+            ></v-checkbox>
+            </v-col>
+
+            <v-col>
+              <v-progress-circular
+              v-for="rep in reps" :key="rep"
+              :rotate="90"
+              :size="100"
+              :width="15"
+              :value="value"
+              color="red"
+            >
+            {{rep}}
+    </v-progress-circular>
+
+          </v-col>
+            </v-row>
 
           </v-card>
-        </v-col>
-       </v-col>
+        </v-row>
+        </div>
+      </v-col>
 
       <v-col cols="6"
         md="4" style="margin-top: 5vh">
@@ -87,7 +123,9 @@ export default {
     return {
       dialog: false,
       user: {},
-      dailyLog: []
+      value: 0,
+      dailyLog: [],
+      reps: []
     };
   },
   components: {
@@ -124,9 +162,11 @@ export default {
       for(let i = 0; i < this.user.exercises.length; i++){
         if(this.user.exercises[i].days.includes(currDay)){
           this.dailyLog.push(this.user.exercises[i].exercise_name);
+          this.reps.push(this.user.exercises[i].reps);
         }
       }
       this.dailyLog = [...new Set(this.dailyLog)];
+      this.reps = [...new Set(this.reps)];
       console.log(this.dailyLog);
     },
     logout() {
