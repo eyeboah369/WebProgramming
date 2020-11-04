@@ -9,10 +9,24 @@ const schema = mongoose.Schema({
     email: String,
     password: String,
     exercises: [{
-            exercise_name: String,
-            reps: Number,
-            days: []
+        exercise_name: String,
+        reps: Number,
+        liked_exercise: Number,
+        days: []
+    }],
+    following: [{
+        follow_name: String
+    }],
+    follower: [{
+        follower_name: String,
+        liked_exercise: [{
+            exercise_name: String
         }]
+    }],
+    likes: [{
+        user_name: String,
+        exercise_name: String
+    }]
 
 });
 
