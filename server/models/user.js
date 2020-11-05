@@ -8,11 +8,22 @@ const schema = mongoose.Schema({
     uname: String,
     email: String,
     password: String,
+    //can query current users exercises and other users exercises
     exercises: [{
         exercise_name: String,
         reps: Number,
         liked_exercise: Number,
-        days: []
+        location: String,
+        days: [],
+        //daily time to for exercises to be collected and averaged for daily output comparison
+        time: Number    
+    }],
+    //mapping occurence of exercise to count to find most done exercise and location
+    //location may be irrelevant to the app overall however (may remove location)
+    most_exercise: [{
+        exercise_name: String,
+        location: String,
+        count_days: Number
     }],
     following: [{
         follow_name: String
@@ -23,6 +34,7 @@ const schema = mongoose.Schema({
             exercise_name: String
         }]
     }],
+    //can be used to average out which user liked the most 
     likes: [{
         user_name: String,
         exercise_name: String
