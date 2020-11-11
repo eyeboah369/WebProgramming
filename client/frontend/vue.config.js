@@ -3,6 +3,6 @@ module.exports = {
     "vuetify"
   ],
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/WebProgramming-Exercise-App-/'
+    ? '/WebProgramming-Exercise-App-/dist'
     : '/'
 }
