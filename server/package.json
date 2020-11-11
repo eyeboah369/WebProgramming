@@ -7,7 +7,10 @@
     "test": "npm run serve",
     "start": "nodemon --watch server server/index.js"
   },
-  "keywords": [],
+  "engines": {
+    "node": "14.9.0"
+  },
+  "keywords": ["heroku"],
   "author": "",
   "license": "ISC",
   "dependencies": {

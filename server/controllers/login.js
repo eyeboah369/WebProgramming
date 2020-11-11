@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const bcrypt = require('bcrypt'); 
 const jwt = require('jsonwebtoken');
-const router = express.Router();
 const User = require("../models/user");
 
    //query all the users from the db to view 
@@ -12,7 +11,6 @@ const User = require("../models/user");
        res.send(users);
    }
    
-
     exports.login = function (req, res){
         try{
             User.findOne({email: req.body.email}, function (error,info){
@@ -32,7 +30,7 @@ const User = require("../models/user");
                             lname: info.lname,
                             uname: info.uname,
                             email: info.email,
-                            log: info.log
+                            exercises: info.exercises
                             }, 
                             "" + process.env.JWT_KEY, {expiresIn: '1h'});
                         res.status(200).json({

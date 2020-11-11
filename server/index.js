@@ -12,7 +12,7 @@ mongoose.connect(`mongodb+srv://eyeboah:${process.env.PASSWORD}@cluster0.hjv22.m
         app.use(express.json());
         app.use("/", routes);
 
-        app.listen(5000, () => {
+        app.listen(process.env.PORT, () => {
             console.log('server running on port 5000');
         })
 })

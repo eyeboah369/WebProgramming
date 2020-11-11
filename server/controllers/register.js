@@ -1,6 +1,7 @@
 const User = require("../models/user");
 
 exports.register = async (req, res) => {
+    //TODO: put check to see if email address already exists
     let newUser = new User({
         fname: req.body.fname,
         lname: req.body.lname,
@@ -8,9 +9,9 @@ exports.register = async (req, res) => {
         email: req.body.email,
         password: req.body.password,
         exercises: [{
-                type: req.body.log.exercises.type,
-                reps: req.body.log.exercises.reps,
-                completed: req.body.log.exercises.completed
+                exercise_name: this.exercises.exercise_name,
+                reps: this.exercises.reps,
+                days: this.exercises.days 
             }]
         }
     )

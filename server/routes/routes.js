@@ -7,9 +7,8 @@ const logController = require('../controllers/log');
 const auth = require('../config/auth');
 
 router.get('/userlist', loginController.getAllUsers);
-router.get('/home',  auth, userController.getUserInfo);
-router.get('/profile', auth, userController.getProfile);
-//router.get('/admin', auth, userController.getAdmin);
+//router.get('/home',  auth, userController.getUserInfo);
+router.get('/profile', userController.getProfile);
 router.post('/login', loginController.login);
 router.post('/register', registerController.register);
 router.post('/updateLog', logController.updateLog);
