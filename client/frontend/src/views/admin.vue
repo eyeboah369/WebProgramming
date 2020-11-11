@@ -33,7 +33,7 @@
       outlined
     >
 
-       <h1 class="greeting">Welcome Admin1!</h1>
+       <p class="greeting">Welcome Admin</p>
       
     </v-row>
 
@@ -83,7 +83,7 @@ export default {
 
 .greeting {
   font-size: 1.5em;
-  font-weight: bold;
+  
 }
 
 .footer{

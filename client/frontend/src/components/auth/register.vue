@@ -93,14 +93,12 @@ export default {
         email: "",
         uname: "",
         password: "",
-      log: {
-          exercises: [{
-              type: "",
-              reps: "",
-              completed: ""
+        exercises: [{
+              exercisse_name: null,
+              reps: null,
+              days: []
           }]
       }
-    }
     };
   },
   methods: {

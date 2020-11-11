@@ -48,12 +48,12 @@
        <v-row class="row"> 
           <v-card
             class="pa-2" 
-            style="box-shadow: 0px 9.5px 15px -7px #888888; height: 60vh; margin-bottom: 10vh; width: 50vw"
+            style="box-shadow: 0px 9.5px 15px -7px #888888; height: 60vh; margin-bottom: 10vh; width: 50vw; "
             outlined
             tile
           >
-               <h2 style="font-size: 21px; padding-bottom: 5vh"><strong>{{ item }}</strong></h2>
-            <v-row>
+               <h2 style="font-size: 21px; padding-bottom: 5vh; text-align: center"><strong>{{ item }}</strong></h2>
+            <v-row style="margin: 0 auto; width: 50%">
               <v-col>
                <v-checkbox 
               v-model="ex4"
@@ -81,14 +81,14 @@
 
             <v-col>
               <v-progress-circular
-              v-for="rep in reps" :key="rep"
+
               :rotate="90"
-              :size="100"
+              :size="130"
               :width="15"
-              :value="value"
+              :rep ="rep"
               color="red"
             >
-            {{rep}}
+            {{reps[0]}}
     </v-progress-circular>
 
           </v-col>

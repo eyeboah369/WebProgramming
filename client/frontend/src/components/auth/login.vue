@@ -81,11 +81,11 @@ export default {
         if(status == 200){
             let token = res.data.token;
               if(this.login.email == "admin1@gmail.com"){
-                console.log("reached admin check!!!!!!")
                 this.$swal.fire("Success", "Login Was successful", "success");
                 this.pushAdmin(token);
               }
           }
+          
           if(status == 200 && this.login.email != "admin1@gmail.com"){
             let token = res.data.token;
               //console.log(res.data.token);
@@ -96,7 +96,7 @@ export default {
             }
 
         else{
-          console.log("bad vibes");
+          console.log("Something went wrong...");
         }
       }
       catch(err){

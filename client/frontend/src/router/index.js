@@ -19,11 +19,11 @@ const routes = [
       },
       {
         path: "/register",
-        name: "register",
+        name: "register", 
         component: register
       },
       {
-        path: "/home",
+        path: "/home", 
         name: "home",
         component: home,
         meta: {
@@ -48,7 +48,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-    if (localStorage.getItem("jwt") == null) {
+    if (localStorage.getItem("jwt") == null ) {
       next({
         path: "/"
       });
