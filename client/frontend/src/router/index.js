@@ -37,7 +37,12 @@ const routes = [
         meta: {
           auth: true
         }
-      }
+      },
+      {
+        path: '*',
+        name: 'catchAll',
+        component: login
+     }
 ];
 
 const router = new VueRouter({
