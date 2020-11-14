@@ -10,8 +10,7 @@ npm run build
 git add dist && git commit -m "updated distribution"
 git push
 
-# addding changes to subtree pages branch 
-
+# addding changes to subtree pages branch for github pages
 cd ../..
 git subtreee push --prefix /client/frontend/dist origin pages
 
