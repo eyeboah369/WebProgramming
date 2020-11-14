@@ -6,20 +6,14 @@ set -e
 # build
 npm run build
 
-# navigate into the build output directory
-cd dist
+# adding and pushing updates build to remote origin 
+git add dist && git commit -m "updated distribution"
+git push
 
-# if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+# addding changes to subtree pages branch 
 
-git init
-git add -A
-git commit -m 'deploy'
+cd ../..
+git subtreee push --prefix /client/frontend/dist origin pages
 
-# if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
-
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:eyeboah369/WebProgramming-Exercise-App-.git master:gh-pages
 
 cd -
