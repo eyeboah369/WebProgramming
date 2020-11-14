@@ -8,22 +8,22 @@ import admin from "../views/admin"
 Vue.use(VueRouter);
 const routes = [
       {
-        path: "/",
+        path: "/WebProgramming-Exercise-App-/",
         name: "login",
         component: login
       },
       {
-        path: "/login",
+        path: "/WebProgramming-Exercise-App-/login",
         name: "login",
         component: login
       },
       {
-        path: "/register",
+        path: "/WebProgramming-Exercise-App-/register",
         name: "register", 
         component: register
       },
       {
-        path: "/home", 
+        path: "/WebProgramming-Exercise-App-/home", 
         name: "home",
         component: home,
         meta: {
@@ -31,7 +31,7 @@ const routes = [
         }
       },
       {
-        path: "/admin",
+        path: "/WebProgramming-Exercise-App-/admin",
         name: "admin",
         component: admin,
         meta: {

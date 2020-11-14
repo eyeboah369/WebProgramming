@@ -76,7 +76,7 @@
         </div>
     </div>
     </form>
-    <h6 class="subtitle is-6">Signed up? Login <router-link to="/login">here</router-link></h6>
+    <h6 class="subtitle is-6">Signed up? Login <router-link to="/WebProgramming-Exercise-App-/login">here</router-link></h6>
 </div>
 </div>
 
