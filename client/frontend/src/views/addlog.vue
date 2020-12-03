@@ -18,12 +18,18 @@
         </v-card-title>
               <v-col>
                 
-              <v-text-field style="color: white;"
-                  label="Exercise Type"
-                  hint="What type of exercise is it?"
-                  required
-                  v-model="user_log.exercise_name"
-                ></v-text-field>
+              <b-field label="Find an Exercise">
+                <b-autocomplete
+                    v-model="name"
+                    :data="filteredDataArray"
+                    placeholder="e.g. situps"
+                    icon="magnify"
+                    clearable
+                    @select="option => selected = option">
+                    <template slot="empty">No results found</template>
+                </b-autocomplete>
+              </b-field>
+
               </v-col>
               <v-col>
                 <v-text-field
@@ -70,8 +76,25 @@ export default {
               exercise_name: "",
               reps: 0,
               days: []
-      }
+      },
+      data: [],
+                name: '',
+                selected: null
     }),
+    computed: {
+      //inside this aspect of the function using the axios call to the server that querys the database
+      //for each time there is a new input to the field the component would make a new async call to the 
+      //server like so:
+      //let res = await this.$http.get("/WebProgramming-Exercise-App-/getList");
+             filteredDataArray() {
+                return this.data.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.name.toLowerCase()) >= 0
+                })
+            }
+        },
     methods: {
       async addExercise() {
         this.dialog = false;
