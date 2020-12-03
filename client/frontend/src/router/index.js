@@ -4,16 +4,17 @@ import login from "../views/login";
 import register from "../views/register";
 import home from "../views/home";
 import admin from "../views/admin"
+import profile from "../views/profile"
 
 Vue.use(VueRouter);
 const routes = [
       {
-        path: "/WebProgramming-Exercise-App-/",
+        path: "/",
         name: "login",
         component: login
       },
       {
-        path: "/WebProgramming-Exercise-App-/login",
+        path: "/login",
         name: "login",
         component: login
       },
@@ -23,7 +24,7 @@ const routes = [
         component: register
       },
       {
-        path: "/WebProgramming-Exercise-App-/home", 
+        path: "/home", 
         name: "home",
         component: home,
         meta: {
@@ -31,9 +32,17 @@ const routes = [
         }
       },
       {
-        path: "/WebProgramming-Exercise-App-/admin",
+        path: "/admin",
         name: "admin",
         component: admin,
+        meta: {
+          auth: true
+        }
+      },
+      {
+        path: "/profile",
+        name: "profile",
+        component: profile,
         meta: {
           auth: true
         }

@@ -12,7 +12,7 @@ git push
 
 # addding changes to subtree pages branch for github pages
 cd ../..
-git subtreee push --prefix /client/frontend/dist origin pages
+git subtree push --prefix client/frontend/dist origin pages
 
 
 cd -

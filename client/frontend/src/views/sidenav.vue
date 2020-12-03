@@ -5,14 +5,14 @@
       fixed
       style="margin-top: 5vh"
     >
-      <v-row class="col" v-for="n in 6" :key="n">
+      <v-row class="col" v-for="(n,index) in users" :key="n">
         <v-list-item two-line>
           <v-list-item-avatar>
             <img src="https://randomuser.me/api/portraits/women/81.jpg">
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title>Jane Smith</v-list-item-title>
+            <v-list-item-title>{{users[index]}}</v-list-item-title>
             <v-list-item-subtitle>Logged In</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -28,6 +28,18 @@
 
       }
     },
+    props: {
+      users: Array
+    },
+    methods: {
+      convert(){
+        this.users = [...new Set(this.users)]
+        console.log(this.users)
+      },
+      mounted(){
+        this.convert()
+      }
+    }
   }
 </script>
 

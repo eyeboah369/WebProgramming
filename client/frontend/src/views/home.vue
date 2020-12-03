@@ -2,7 +2,7 @@
   <v-app>
 <nav class="navbar" role="navigation" aria-label="main navigation" style="position: fixed; width: 100%; background-color: lightgreen; ">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/home" style="color: black">
+    <a class="navbar-item" href="/WebProgramming-Exercise-App-/home" style="color: black">
       <h1><strong>Exercise App</strong></h1>
     </a>
 
@@ -13,11 +13,15 @@
     </a>
   </div>
 
-  <div class="navbar-end">
+    <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-                  <addLog />
+            <addLog />
+            <a class="button is-primary" href="/profile" v-bind="attrs" v-on="on">
+              <strong>Profile</strong>
+            </a>
         </div>
+
       </div>
     </div>
     <footer class="footer">
@@ -44,7 +48,7 @@
         md="8">
        <h1 class="greeting">Welcome {{user.fname}}!</h1>
         <h2>Today's Exercises:</h2><br />
-        <div v-for="item in dailyLog" :key="item" style="display: inline-block; padding-right: 4vw;">
+        <div v-for="(item, index) in dailyLog" :key="item" style="display: inline-block; padding-right: 4vw;">
        <v-row class="row"> 
           <v-card
             class="pa-2" 
@@ -86,10 +90,11 @@
               :size="130"
               :width="15"
               :rep ="rep"
-              color="red"
+              color="green"
             >
-            {{reps[0]}}
-    </v-progress-circular>
+            {{reps[index]}}
+            
+            </v-progress-circular>
 
           </v-col>
             </v-row>
@@ -99,10 +104,8 @@
         </div>
       </v-col>
 
-      <v-col cols="6"
-        md="4" style="margin-top: 5vh">
-      <sidenav />
-      
+      <v-col cols="6" md="4" style="margin-top: 5vh">
+        <sidenav v-bind:users="othersArr"/>
       </v-col>
       
     </v-row>
@@ -125,7 +128,10 @@ export default {
       user: {},
       value: 0,
       dailyLog: [],
-      reps: []
+      reps: [],
+      otherUsers: [],
+      othersArr: [],
+      count: 0
     };
   },
   components: {
@@ -169,6 +175,21 @@ export default {
       this.reps = [...new Set(this.reps)];
       console.log(this.dailyLog);
     },
+    async getUsers() {
+        try {
+          this.otherUsers = await this.$http.get("/WebProgramming-Exercise-App-/userlist");
+          this.otherUsers.data = [...new Set(this.otherUsers.data)];
+          for(var i = 0; i < this.otherUsers.data.length; i++){
+            if(this.otherUsers.data[i].fname != "admin" & this.otherUsers.data[i].fname != this.user.fname)
+              this.othersArr.push(this.otherUsers.data[i].fname)
+          }
+          this.othersArr = [...new Set(this.othersArr)]
+           console.log("This is the user list: ", this.othersArr)
+        }
+        catch(err){
+          console.log("This is the error: ", err);
+        }
+    },
     logout() {
       localStorage.removeItem("jwt");
       console.log("logging out...");
@@ -178,7 +199,8 @@ export default {
   },
   mounted() {
       this.getUserDetails(),
-      this.getDayLog();
+      this.getDayLog(),
+      this.getUsers();
   }
 };
 </script>

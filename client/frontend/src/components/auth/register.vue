@@ -105,7 +105,7 @@ export default {
 
     async registerUser() {
         try{
-            let res = await this.$http.post("/register", this.register);
+            let res = await this.$http.post("/WebProgramming-Exercise-App-/register", this.register);
             let status = res.status
             if(status == 200){
                 //localStorage.setItem("jwt", token);
@@ -123,7 +123,7 @@ export default {
                 this.$swal.fire("Error", "Email already exists,", "error");
             }
             else{
-                this.$swal.fire("Error", "Something Went wrong when registeering, please try again", "error");
+                this.$swal.fire("Error", "Something Went wrong when registering, please try again", "error");
             }
         }
     }

@@ -7,6 +7,7 @@ const schema = mongoose.Schema({
     lname: String,
     uname: String,
     email: String,
+    profile_pic: { data: Buffer, contentType: String },
     password: String,
     //can query current users exercises and other users exercises
     exercises: [{

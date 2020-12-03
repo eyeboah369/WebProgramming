@@ -9,9 +9,9 @@ exports.register = async (req, res) => {
         email: req.body.email,
         password: req.body.password,
         exercises: [{
-                exercise_name: this.exercises.exercise_name,
-                reps: this.exercises.reps,
-                days: this.exercises.days 
+                exercise_name: null,
+                reps: null,
+                days: null 
             }]
         }
     )

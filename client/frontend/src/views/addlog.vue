@@ -83,7 +83,7 @@ export default {
           this.user_log.email = decoded.email
           console.log(this.user_log);
           this.$swal.fire('Added to Log!');
-          let res = await this.$http.post("/updateLog", this.user_log);
+          let res = await this.$http.post("/WebProgramming-Exercise-App-/updateLog", this.user_log);
           console.log("Add log response: " + res);
         }
         catch(err){

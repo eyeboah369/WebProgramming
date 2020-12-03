@@ -2,7 +2,7 @@
 <div>
 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: lightgreen; margin-bottom: 5vh">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/WebProgramming-Exercise-App-/login">
+    <a class="navbar-item" href="/login">
       <h1><strong>Exercise App</strong></h1>
     </a>
 
@@ -75,7 +75,7 @@ export default {
   methods: {
     async loginUser() {
       try {
-        let res = await this.$http.post("/login", this.login);
+        let res = await this.$http.post("/WebProgramming-Exercise-App-/login", this.login);
         let status = res.status
 
         if(status == 200){

@@ -80,9 +80,9 @@
       </template>
       <v-card>
         <v-card-title class="headline">
-          Use Google's location service?
+          Get Log
         </v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-text>Log</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
@@ -122,9 +122,9 @@
       </template>
       <v-card>
         <v-card-title class="headline">
-          Use Google's location service?
+          Log
         </v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-text> edit log</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
